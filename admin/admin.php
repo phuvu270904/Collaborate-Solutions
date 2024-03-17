@@ -148,41 +148,37 @@ $topics = getTopics()
 				</div> 
 				<div class="todo">
 					<div class="head">
-						<h3>Todos</h3>
+						<h3>Topics Management</h3>
 					</div>
           <div class="order">
             <table>
 						<thead>
 							<tr>
 								<th>Number</th>
-                <th>User Avatar</th>
-                <th>Username</th>
-                <th>Email</th>
+                <th>Topic name</th>
+                <th>Subscription</th>
+                <th>Thumbnail</th>
 								<th>Created at</th>
-                <th>Role</th>
 								<th>Management</th>
 							</tr>
 						</thead>
 						<tbody>
-              <?php foreach ($users as $index => $user): ?>
+              <?php foreach ($topics as $index => $topic): ?>
                   <tr>
                     <td>
                       <?php echo $index + 1; ?>
                     </td>
-                    <td>
-                      <img src="../images/avatars/<?php echo $user["avatar"] ?>" alt="avatar">
+                    <td width="200">
+                      <?php echo $topic["topic_name"] ?>
+                    </td>
+                    <td width="300">
+                      <?php echo $topic['topic_content'] ?>
                     </td>
                     <td>
-                      <?php echo $user['username'] ?>
+                      <?php echo $topic['topic_thumbnail'] ?>
                     </td>
                     <td>
-                      <?php echo $user['email'] ?>
-                    </td>
-                    <td>
-                      <?php echo $user['created_at'] ?>
-                    </td>
-                    <td>
-                      <?php echo $user['role'] ?>
+                      <?php echo $topic['created_at'] ?>
                     </td>
                     <td>
                       <button class="status edit">Edit</button>
