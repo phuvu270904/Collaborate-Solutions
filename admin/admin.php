@@ -12,6 +12,10 @@ if (!isAdmin()) {
   header("Location: ../index.php");
 }
 
+if (isset($_POST["submit_message"])) {
+  sendMessage();
+}
+
 $messages = renderMessages();
 $users = getAllUsers();
 $topics = getTopics()
@@ -71,7 +75,7 @@ $topics = getTopics()
 
   <div class="popup" id="popup-message">
     <div class="overlay"></div>
-    <form class="popup-content" action="index.php" method="post" autocomplete="off">
+    <form class="popup-content" action="admin.php" method="post" autocomplete="off">
       <h2>Message us</h2>
       <div class="input-create-topic">
         <input class="edit-input" type="text" name="title_message" id="title_message" required placeholder="Title*">
