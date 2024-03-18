@@ -103,6 +103,10 @@ $topics = getTopics()
               <p>Sent by: <?php echo $message["message_creator"] ?></p>
               <hr>
               <p class="text-content"><?php echo $message["message_content"] ?></p>
+              <form method="post"
+                action="../messages/delete_message.php?message_id=<?php echo $message['message_id']; ?>">
+                <button type="submit" class="button-management delete">Delete</button>
+              </form>
             </span>
           </li>
         <?php endforeach; ?>
@@ -138,8 +142,16 @@ $topics = getTopics()
                   <td><?php echo $user['created_at'] ?></td>
                   <td><?php echo $user['role'] ?></td>
                   <td>
-                    <button class="status edit">Edit</button>
-                    <button class="status delete">Delete</button>
+                    <form action="" style="display: inline-block;">
+                      <button class="status edit">Edit</button>
+                    </form>
+                    <form 
+                      method="post"
+                      action="../includes/delete_user.php?user_id=<?php echo $user['user_id']; ?>" 
+                      style="display: inline-block;"
+                    >
+                      <button class="status delete">Delete</button>
+                    </form>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -181,8 +193,13 @@ $topics = getTopics()
                       <?php echo $topic['created_at'] ?>
                     </td>
                     <td>
-                      <button class="status edit">Edit</button>
-                      <button class="status delete">Delete</button>
+                      <form action="" style="display: inline-block;">
+                        <button class="button-management edit">Edit</button>
+                      </form>
+                      <form method="post" style="display: inline-block;"
+                        action="../topics/delete_topic.php?topic_id=<?php echo $topic['topic_id']; ?>">
+                        <button type="submit" class="button-management delete">Delete</button>
+                      </form>
                     </td>
                   </tr>
                 <?php endforeach; ?>
