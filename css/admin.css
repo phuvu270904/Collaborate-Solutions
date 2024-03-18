@@ -236,6 +236,12 @@ body.dark {
 	color: var(--dark);
 }
 
+#content main h3 {
+	font-size: 24px;
+	font-weight: 600;
+	color: var(--dark);
+}
+
 #content main .box-info {
 	display: flex;
   flex-wrap: wrap;
@@ -251,14 +257,20 @@ body.dark {
   margin: 30px;
 }
 
+#content main .box-info li .text {
+	width: 100%;
+}
+
 #content main .box-info li .text h3 {
 	font-size: 24px;
 	font-weight: 600;
 	color: var(--dark);
+	overflow-wrap: break-word;
 }
 
 #content main .box-info li .text p {
 	color: var(--dark);	
+	overflow-wrap: break-word;
 }
 
 #content main .box-info li .text .text-content {

@@ -97,7 +97,7 @@ $topics = getTopics()
 				</div>
 			</div>
       
-      <h1>Messages from Users</h1>
+      <h3>Messages from Users</h3>
 
 			<ul class="box-info">
         <?php foreach ($messages as $message): ?>
@@ -109,7 +109,7 @@ $topics = getTopics()
               <p class="text-content"><?php echo $message["message_content"] ?></p>
               <form method="post"
                 action="../messages/delete_message.php?message_id=<?php echo $message['message_id']; ?>">
-                <button type="submit" class="button-management delete">Delete</button>
+                <button type="submit" class="button-management delete" style="margin-top: 20px;">Delete</button>
               </form>
             </span>
           </li>
@@ -151,7 +151,7 @@ $topics = getTopics()
                     </form>
                     <form 
                       method="post"
-                      action="../includes/delete_user.php?user_id=<?php echo $user['user_id']; ?>" 
+                      action="../profile/delete_user.php?user_id=<?php echo $user['user_id']; ?>" 
                       style="display: inline-block;"
                     >
                       <button class="status delete">Delete</button>
