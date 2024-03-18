@@ -46,7 +46,7 @@ $topics = getTopics()
           <i class="fa fa-home"></i>Home
         </li>
       </a>
-      <a href="#">
+      <a href="../profile/profile_user.php">
         <li class="menu-item">
           <i class="fa fa-user-circle-o"></i>Profile
         </li>
@@ -65,7 +65,7 @@ $topics = getTopics()
           <i class="fa fa-question-circle-o"></i>Help
         </li>
       </a>
-      <a href="./auth/logout.php">
+      <a href="../auth/logout.php">
         <li class="menu-item">
           <i class="fa fa-sign-out"></i>Logout
         </li>
@@ -147,14 +147,14 @@ $topics = getTopics()
                   <td><?php echo $user['role'] ?></td>
                   <td>
                     <form action="" style="display: inline-block;">
-                      <button class="status edit">Edit</button>
+                      <button class="button-management edit">Edit</button>
                     </form>
                     <form 
                       method="post"
                       action="../profile/delete_user.php?user_id=<?php echo $user['user_id']; ?>" 
                       style="display: inline-block;"
                     >
-                      <button class="status delete">Delete</button>
+                      <button class="button-management delete">Delete</button>
                     </form>
                   </td>
                 </tr>
