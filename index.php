@@ -46,7 +46,7 @@ $topics = getTopics();
           <i class="fa fa-home"></i>Home
         </li>
       </a>
-      <a href="./profile/profile_user.php">
+      <a href="./profile/profile_user.php?user_id=<?php echo $_SESSION["login"]["user_id"]?>">
         <li class="menu-item">
           <i class="fa fa-user-circle-o"></i>Profile
         </li>

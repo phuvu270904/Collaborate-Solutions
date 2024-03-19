@@ -11,6 +11,8 @@ if (isset ($_POST["submit_message"])) {
   sendMessage();
 }
 
+$user_id = $_GET['user_id'];
+$user_info = getUserInfo($user_id);
 
 ?>
 
@@ -24,7 +26,7 @@ if (isset ($_POST["submit_message"])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="../images/favicon_white.png" type="image/x-icon">
-  <title>Collaborate Solutions | Admin Space</title>
+  <title>Collaborate Solutions | Profile</title>
 </head>
 
 <body>
@@ -38,7 +40,7 @@ if (isset ($_POST["submit_message"])) {
           <i class="fa fa-home"></i>Home
         </li>
       </a>
-      <a href="#">
+      <a href="profile_user.php?user_id=<?php echo $_SESSION["login"]["user_id"]?>">
         <li class="menu-item">
           <i class="fa fa-user-circle-o"></i>Profile
         </li>
@@ -79,6 +81,46 @@ if (isset ($_POST["submit_message"])) {
         <button type="submit" name="submit_message" class="submit-btn">Submit</button>
       </div>
     </form>
+  </div>
+
+  <div class="wrapper">
+    <div class="left">
+        <img src="../images/avatars/<?php echo $user_info["avatar"]?>" 
+        alt="user" width="100">
+        <h4><?php echo $user_info["username"]?></h4>
+        <p>(<?php echo $user_info["role"] ?>)</p>
+        <a href="#"><button class="edit-btn">Edit Profile</button></a>
+    </div>
+    <div class="right">
+      <div class="info">
+          <h3>Information</h3>
+          <div class="info_data">
+              <div class="data">
+                  <h4>Email</h4>
+                  <p><?php echo $user_info["email"] ?></p>
+              </div>
+              <div class="data">
+                <h4>Phone</h4>
+                <p><?php echo $user_info["phone"] == null ? "No phone number" : $user_info["phone"] ?></p>
+            </div>
+          </div>
+      </div>
+      
+      <div class="projects">
+        <h3>Activities</h3>
+        <div class="projects_data">
+          <div class="data">
+              <h4>Posts</h4>
+              <p>0</p>
+          </div>
+          <div class="data">
+            <h4>Feedback for Forum</h4>
+            <p>0</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </div>
 
 

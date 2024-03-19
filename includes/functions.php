@@ -113,3 +113,17 @@ function getAllUsers() {
     echo "Error: " . $e->getMessage();
   }
 }
+
+function getUserInfo($user_id) {
+  global $conn;
+  try {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+}
