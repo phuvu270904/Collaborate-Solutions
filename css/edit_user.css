@@ -120,8 +120,7 @@ body.dark {
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
-  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 0.75em;
+  font-size: 1.2em;
   font-weight: 600;
   line-height: normal;
   min-height: 60px;
@@ -136,6 +135,7 @@ body.dark {
   touch-action: manipulation;
   width: auto;
   will-change: transform;
+  margin-top: 10px;
 }
 
 .edit-btn:disabled {
@@ -307,63 +307,47 @@ body.dark {
   border-bottom-right-radius: 5px;
 }
 
-.wrapper .right .info,
-.wrapper .right .projects{
+.wrapper .right .info {
   margin-bottom: 50px;
 }
 
-.wrapper .right .info h3,
-.wrapper .right .projects h3{
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #e0e0e0;
-    color: #353c4e;
+.wrapper .right .info h3 {
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #353c4e;
   text-transform: uppercase;
   letter-spacing: 5px;
   font-size: 2em;
 }
 
-.wrapper .right .info_data,
-.wrapper .right .projects_data{
+.wrapper .right .info_data {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
-.wrapper .right .info_data .data,
-.wrapper .right .projects_data .data{
+.wrapper .right .info_data .data {
   width: 45%;
+  margin-bottom: 10px;
 }
 
-.wrapper .right .info_data .data h4,
-.wrapper .right .projects_data .data h4{
+.wrapper .right .info_data .data h4 {
   color: #353c4e;
   margin-bottom: 5px;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
-.wrapper .right .info_data .data p,
-.wrapper .right .projects_data .data p{
-  font-size: 1.2em;
-  margin-bottom: 10px;
+.wrapper .right .info_data .data input {
+  background-color: #ebebeb;
+  border: none;
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
   color: #919aa3;
 }
 
-.wrapper .social_media ul{
-  display: flex;
-}
-
-.wrapper .social_media ul li{
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(to right,#01a9ac,#01dbdf);
-  margin-right: 10px;
-  border-radius: 5px;
-  text-align: center;
-  line-height: 45px;
-}
-
-.wrapper .social_media ul li a{
-  color :#fff;
-  display: block;
-  font-size: 18px;
+.wrapper .right .info_data .data input:focus {
+  color: #000000;
 }

@@ -14,6 +14,64 @@ if (isset ($_POST["submit_message"])) {
 $user_id = $_GET['user_id'];
 $user_info = getUserInfo($user_id);
 
+if (!($_SESSION['login']['user_id'] == $user_id) && !isAdmin()) {
+  echo "<script>alert('You can not access this page!');</script>";
+  header("Location: ../index.php");
+}
+
+function updateAvatar($file)
+{
+  global $user_info;
+
+  if (isset ($file) && $file['error'] === UPLOAD_ERR_OK) {
+    $uploadToDirectory = "../images/avatars/"; // Directory where uploaded files will be stored
+    $uploadFile = $uploadToDirectory . basename($file['name']); // Full path to the uploaded file
+
+    $check = getimagesize($file['tmp_name']);
+    if ($check === false) {
+      return null;
+    }
+
+    if ($file['size'] > 5000000) {
+      echo "<script>alert('File is too large. Maximum is 5mb!');</script>";
+      return null;
+    }
+
+    // Move the uploaded file to the target directory
+    if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+      return $uploadFile;
+    } else {
+      echo "<script>alert('Failed to upload!');</script>";
+      return null;
+    }
+  } else {
+    return $user_info['avatar'];
+  }
+}
+
+if (isset ($_POST['update_profile'])) {
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $avatar = updateAvatar($_FILES['avatar']);
+  $role = $_POST['role'];
+
+  $stmt = $db->prepare('UPDATE users 
+                        SET username = :username, email = :email, phone = :phone, avatar = :avatar, role = :role
+                        WHERE user_id = :user_id');
+  $stmt->bindParam(':username', $username);
+  $stmt->bindParam(':email', $email);
+  $stmt->bindParam(':phone', $phone);
+  $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+  $stmt->bindParam(':role', $role);
+  $stmt->bindParam(':user_id', $user_id);
+  $stmt->execute();
+
+  // Redirect to the profile page
+  header('Location: ./profile_user.php?user_id=' . $user_id);
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +80,7 @@ $user_info = getUserInfo($user_id);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/profile_user.css">
+  <link rel="stylesheet" href="../css/edit_user.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="../images/favicon_white.png" type="image/x-icon">
@@ -86,47 +144,44 @@ $user_info = getUserInfo($user_id);
   <div class="wrapper">
     <div class="left">
       <img src="../images/avatars/<?php echo $user_info["avatar"] ?>" alt="user" width="100">
-      <h4>
-        <?php echo $user_info["username"] ?>
-      </h4>
-      <p>(
-        <?php echo $user_info["role"] ?>)
-      </p>
-      <a href="#"><button class="edit-btn">Edit Profile</button></a>
     </div>
     <div class="right">
       <div class="info">
         <h3>Information</h3>
-        <div class="info_data">
+        <form method="post" enctype="multipart/form-data" class="info_data">
+          <div class="data">
+            <h4>Username</h4>
+            <p>
+              <input type="text" name="username" value="<?php echo $user_info["username"] ?>">
+            </p>
+          </div>
           <div class="data">
             <h4>Email</h4>
+            <input type="text" name="email" value="<?php echo $user_info["email"] ?>">
+          </div>
+          <div class="data">
+            <h4>Phone Number</h4>
             <p>
-              <?php echo $user_info["email"] ?>
+              <input type="text" name="phone" value="<?php echo $user_info["phone"] ?>">
             </p>
           </div>
           <div class="data">
-            <h4>Phone</h4>
+            <h4>Update your avatar</h4>
             <p>
-              <?php echo $user_info["phone"] == null ? "No phone number" : $user_info["phone"] ?>
+              <input type="file" name="avatar">
             </p>
           </div>
-        </div>
+          <?php if (isAdmin()): ?>
+            <div class="data">
+              <h4>Role</h4>
+              <p>
+                <input type="text" name="role" value="<?php echo $user_info["role"] ?>">
+              </p>
+            </div>
+          <?php endif; ?>
+          <button type="submit" name="update_profile" class="edit-btn">Update Profile</button>
+        </form>
       </div>
-
-      <div class="projects">
-        <h3>Activities</h3>
-        <div class="projects_data">
-          <div class="data">
-            <h4>Posts</h4>
-            <p>0</p>
-          </div>
-          <div class="data">
-            <h4>Feedback for Forum</h4>
-            <p>0</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
