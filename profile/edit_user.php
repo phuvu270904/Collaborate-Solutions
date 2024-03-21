@@ -54,7 +54,11 @@ if (isset ($_POST['update_profile'])) {
   $email = $_POST['email'];
   $phone = $_POST['phone'];
   $avatar = updateAvatar($_FILES['avatar']);
-  $role = $_POST['role'];
+  if (isset($_POST['role'])){
+    $role = $_POST['role'];
+  } else {
+    $role = 'user';
+  }
 
   $stmt = $conn->prepare('UPDATE users 
                         SET username = :username, email = :email, phone = :phone, avatar = :avatar, role = :role
