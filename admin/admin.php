@@ -139,16 +139,16 @@ $topics = getTopics()
                 <tr>
                   <td><?php echo $index + 1; ?></td>
                   <td>
-                    <img src="../images/avatars/<?php echo $user["avatar"] ?>" alt="avatar">
+                    <img src="<?php echo $user["avatar"] ?>" alt="avatar">
                   </td>
                   <td><?php echo $user['username']?></td>
                   <td><?php echo $user['email'] ?></td>
                   <td><?php echo $user['created_at'] ?></td>
                   <td><?php echo $user['role'] ?></td>
                   <td>
-                    <form action="" style="display: inline-block;">
+                    <a href="../profile/edit_user.php?user_id=<?php echo $user['user_id']; ?>" style="display: inline-block;">
                       <button class="button-management edit">Edit</button>
-                    </form>
+                    </a>
                     <form 
                       method="post"
                       action="../profile/delete_user.php?user_id=<?php echo $user['user_id']; ?>" 

@@ -56,7 +56,7 @@ if (isset ($_POST['update_profile'])) {
   $avatar = updateAvatar($_FILES['avatar']);
   $role = $_POST['role'];
 
-  $stmt = $db->prepare('UPDATE users 
+  $stmt = $conn->prepare('UPDATE users 
                         SET username = :username, email = :email, phone = :phone, avatar = :avatar, role = :role
                         WHERE user_id = :user_id');
   $stmt->bindParam(':username', $username);
@@ -143,7 +143,7 @@ if (isset ($_POST['update_profile'])) {
 
   <div class="wrapper">
     <div class="left">
-      <img src="../images/avatars/<?php echo $user_info["avatar"] ?>" alt="user" width="100">
+      <img src="<?php echo $user_info["avatar"] ?>" alt="user" width="100">
     </div>
     <div class="right">
       <div class="info">

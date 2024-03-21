@@ -85,7 +85,7 @@ $user_info = getUserInfo($user_id);
 
   <div class="wrapper">
     <div class="left">
-        <img src="../images/avatars/<?php echo $user_info["avatar"]?>" 
+        <img src="<?php echo $user_info["avatar"]?>" 
         alt="user" width="100">
         <h4><?php echo $user_info["username"]?></h4>
         <p>(<?php echo $user_info["role"] ?>)</p>

@@ -1,12 +1,36 @@
 <?php
 require __DIR__ . "../../config/config.php";
 
+function thumbnailTopic($file) {
+
+  $uploadToDirectory = "./images/topics/"; // Directory where uploaded files will be stored
+  $uploadFile = $uploadToDirectory . basename($file['name']); // Full path to the uploaded file
+
+  $check = getimagesize($file['tmp_name']);
+  if ($check === false) {
+    return null;
+  }
+
+  if ($file['size'] > 5000000) {
+    echo "<script>alert('File is too large. Maximum is 5mb!');</script>";
+    return null;
+  }
+
+  // Move the uploaded file to the target directory
+  if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+    return $uploadFile;
+  } else {
+    echo "<script>alert('Failed to upload!');</script>";
+    return null;
+  }
+}
+
 function createTopic() {
   global $conn;
 
   $title_topic = $_POST["title_topic"];
   $note_topic = $_POST["note_topic"];
-  $thumbnail_topic = $_POST["thumbnail_topic"];
+  $thumbnail_topic = thumbnailTopic($_FILES["thumbnail_topic"]);
 
   try {
     $stmt = $conn->prepare("SELECT * FROM topics WHERE topic_name = :topic_title");
@@ -21,7 +45,7 @@ function createTopic() {
         $stmt->bindParam(':topic_content', $note_topic);
         $stmt->bindParam(':topic_creator', $_SESSION["login"]["username"]);
         $stmt->bindParam(':topic_creator_id', $_SESSION["login"]["user_id"]);
-        $stmt->bindParam(':topic_thumbnail', $thumbnail_topic);
+        $stmt->bindParam(':topic_thumbnail', $thumbnail_topic, PDO::PARAM_STR);
         $stmt->execute();
 
         echo "<script>alert('Add new topic Successully');</script>";

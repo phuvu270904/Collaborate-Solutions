@@ -113,7 +113,7 @@ $topics = getTopics();
           <button class="welcome-btn" id="open-popup">Create New Topic</button>
           <div class="popup" id="popup">
             <div class="overlay"></div>
-            <form class="popup-content" action="index.php" method="post" autocomplete="off">
+            <form class="popup-content" action="index.php" method="post" autocomplete="off" enctype="multipart/form-data">
               <h2>Create a new topic</h2>
               <div class="input-create-topic">
                 <input class="edit-input" type="text" name="title_topic" id="title_topic" required placeholder="Title*">
@@ -132,7 +132,7 @@ $topics = getTopics();
       <div class="card-container">
         <?php foreach ($topics as $topic): ?>
           <div class="card">
-            <img src="./images/topics/<?php echo $topic["topic_thumbnail"] ?>"
+            <img src="<?php echo $topic["topic_thumbnail"]?>"
               alt="<?php echo $topic["topic_thumbnail"] ?>">
             <div class="card-content">
               <h3><i>
