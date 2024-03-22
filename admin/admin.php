@@ -206,12 +206,12 @@ $topics = getTopics()
                       </form>
                       <div class="popup" id="popup-topic-<?php echo $topic['topic_id']; ?>">
                         <div class="overlay"></div>
-                        <form class="popup-content" action="admin.php" method="post" autocomplete="off">
+                        <form class="popup-content" action="../topics/edit_topic.php?topic_id=<?php echo $topic['topic_id']; ?>" enctype="multipart/form-data" method="post">
                           <h2>Edit topic</h2>
                           <div class="input-create-topic">
                             <input class="edit-input" type="text" name="topic_name" id="topic_name" placeholder="Topic name" value="<?php echo $topic['topic_name']?>">
                             <textarea class="edit-input" rows="5" type="text" name="topic_content" id="topic_content" placeholder="Topic content*"><?php echo $topic['topic_content'] ?></textarea>
-                            <input class="edit-input" type="file" name="topic_thumbnail" id="topic_thumbnail">
+                            <input class="edit-input" type="file" name="topic_thumbnail">
                           </div>
                           <div class="controls">
                             <button class="close-btn">Close</button>
