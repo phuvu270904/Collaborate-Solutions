@@ -9,7 +9,10 @@ function createPopup(id) {
 		popupNode.classList.remove("active")
 	}
 	overlay.addEventListener("click", closePopup)
-	closeBtn.addEventListener("click", closePopup)
+	closeBtn.addEventListener("click", function (event) {
+		event.preventDefault()
+		closePopup()
+	})
 	return openPopup
 }
 

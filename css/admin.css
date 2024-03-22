@@ -167,6 +167,13 @@ body.dark {
   font-size: 13px;
   border-radius: 8px;
   outline: none;
+  height: auto;
+  color: #919aa3;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.popup .popup-content .input-create-topic .edit-input:focus {
+  color: #000000;
 }
 
 .popup .popup-content .controls {

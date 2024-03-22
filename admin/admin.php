@@ -75,14 +75,14 @@ $topics = getTopics()
 
   <div class="popup" id="popup-message">
     <div class="overlay"></div>
-    <form class="popup-content" action="admin.php" method="post" autocomplete="off">
+    <form class="popup-content" enctype="multipart/form-data" method="post" autocomplete="off">
       <h2>Message us</h2>
       <div class="input-create-topic">
         <input class="edit-input" type="text" name="title_message" id="title_message" required placeholder="Title*">
         <input class="edit-input" type="text" name="content_message" id="content_message" required placeholder="Content*">
       </div>
       <div class="controls">
-        <button class="close-btn">Close</button>
+        <button type="button" class="close-btn">Close</button>
         <button type="submit" name="submit_message" class="submit-btn">Submit</button>
       </div>
     </form>
@@ -209,12 +209,13 @@ $topics = getTopics()
                         <form class="popup-content" action="admin.php" method="post" autocomplete="off">
                           <h2>Edit topic</h2>
                           <div class="input-create-topic">
-                            <input class="edit-input" type="text" name="title_message" id="title_message" required placeholder="Title*">
-                            <input class="edit-input" type="text" name="content_message" id="content_message" required placeholder="Content*">
+                            <input class="edit-input" type="text" name="topic_name" id="topic_name" placeholder="Topic name" value="<?php echo $topic['topic_name']?>">
+                            <textarea class="edit-input" rows="5" type="text" name="topic_content" id="topic_content" placeholder="Topic content*"><?php echo $topic['topic_content'] ?></textarea>
+                            <input class="edit-input" type="file" name="topic_thumbnail" id="topic_thumbnail">
                           </div>
                           <div class="controls">
                             <button class="close-btn">Close</button>
-                            <button type="submit" name="submit_message" class="submit-btn">Submit</button>
+                            <button type="submit" name="submit_edit_topic" class="submit-btn">Submit</button>
                           </div>
                         </form>
                       </div>
