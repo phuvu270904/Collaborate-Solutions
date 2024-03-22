@@ -197,20 +197,33 @@ $topics = getTopics()
                       <?php echo $topic['created_at'] ?>
                     </td>
                     <td>
-                      <form action="" style="display: inline-block;">
+                      <a id="open-popup-topic-<?php echo $topic['topic_id']; ?>">
                         <button class="button-management edit">Edit</button>
-                      </form>
+                      </a>
                       <form method="post" style="display: inline-block;"
                         action="../topics/delete_topic.php?topic_id=<?php echo $topic['topic_id']; ?>">
                         <button type="submit" class="button-management delete">Delete</button>
                       </form>
+                      <div class="popup" id="popup-topic-<?php echo $topic['topic_id']; ?>">
+                        <div class="overlay"></div>
+                        <form class="popup-content" action="admin.php" method="post" autocomplete="off">
+                          <h2>Edit topic</h2>
+                          <div class="input-create-topic">
+                            <input class="edit-input" type="text" name="title_message" id="title_message" required placeholder="Title*">
+                            <input class="edit-input" type="text" name="content_message" id="content_message" required placeholder="Content*">
+                          </div>
+                          <div class="controls">
+                            <button class="close-btn">Close</button>
+                            <button type="submit" name="submit_message" class="submit-btn">Submit</button>
+                          </div>
+                        </form>
+                      </div>
                     </td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
             </table>
           </div>
-					
 				</div>
 			</div>
 		</main>
