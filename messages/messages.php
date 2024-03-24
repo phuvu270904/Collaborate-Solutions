@@ -36,11 +36,12 @@ function renderMessages()
   }
 }
 
-function countMessages() {
+function countMessages($message_creator_id) {
   global $conn;
 
   try {
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM messages");
+    $stmt = $conn->prepare("SELECT COUNT(message_id) FROM messages GROUP BY message_creator_id HAVING message_creator_id = :message_creator_id");
+    $stmt->bindParam(':message_creator_id', $message_creator_id);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 

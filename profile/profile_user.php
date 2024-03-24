@@ -25,10 +25,13 @@ if ($countTopics === false) {
   $count_topics = $countTopics["COUNT(topic_id)"];
 }
 
-$countMessages = countMessages();
-$count_messages = $countMessages["COUNT(*)"];
+$countMessages = countMessages($user_id);
 
-
+if ($countMessages === false) {
+  $count_messages = 0;
+} else {
+  $count_messages = $countMessages["COUNT(message_id)"];
+}
 
 
 ?>
@@ -132,12 +135,10 @@ $count_messages = $countMessages["COUNT(*)"];
               <h4>Posts</h4>
               <p><?php echo $count_topics ?></p>
           </div>
-          <?php if (isAdmin()): ?>
             <div class="data">
               <h4>Feedback for Forum</h4>
               <p><?php echo $count_messages?></p>
             </div>
-          <?php endif; ?>
         </div>
       </div>
       
