@@ -141,7 +141,7 @@ $topics = getTopics();
               <p>
                 <?php echo $topic["topic_content"] ?>
               </p>
-              <a href="" class="btn">Ask questions</a>
+              <a href="./topics/access_topic.php?topic_id=<?php echo $topic['topic_id']?>" class="btn">Ask questions</a>
             </div>
           </div>
         <?php endforeach; ?>

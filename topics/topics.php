@@ -67,3 +67,32 @@ function getTopics() {
     echo "Error: " . $e->getMessage();
   }
 }
+
+function countTopics($topic_creator_id) {
+  global $conn;
+
+  try {
+    $stmt = $conn->prepare("SELECT COUNT(topic_id) FROM topics GROUP BY topic_creator_id HAVING topic_creator_id = :topic_creator_id");
+    $stmt->bindParam(':topic_creator_id', $topic_creator_id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+}
+
+function getSingleTopic($topic_id) {
+  global $conn;
+
+  try {
+    $stmt = $conn->prepare("SELECT * FROM topics WHERE topic_id = :topic_id");
+    $stmt->bindParam(':topic_id', $topic_id);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+}

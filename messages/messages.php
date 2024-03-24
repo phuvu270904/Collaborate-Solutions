@@ -35,3 +35,16 @@ function renderMessages()
     echo "Error: " . $e->getMessage();
   }
 }
+
+function countMessages() {
+  global $conn;
+
+  try {
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM messages");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+}
