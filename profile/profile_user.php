@@ -132,11 +132,11 @@ if ($countMessages === false) {
         <h3>Activities</h3>
         <div class="projects_data">
           <div class="data">
-              <h4>Posts</h4>
+              <h4>Post(s)</h4>
               <p><?php echo $count_topics ?></p>
           </div>
             <div class="data">
-              <h4>Feedback for Forum</h4>
+              <h4>Feedback(s) for Forum</h4>
               <p><?php echo $count_messages?></p>
             </div>
         </div>

@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
 }
 
 
-if (isset ($_POST["submit_message"])) {
+if (isset($_POST["submit_message"])) {
   sendMessage();
 }
 
@@ -41,7 +41,7 @@ $topic_info = getSingleTopic($topic_id);
           <i class="fa fa-home"></i>Home
         </li>
       </a>
-      <a href="profile_user.php?user_id=<?php echo $_SESSION["login"]["user_id"]?>">
+      <a href="profile_user.php?user_id=<?php echo $_SESSION["login"]["user_id"] ?>">
         <li class="menu-item">
           <i class="fa fa-user-circle-o"></i>Profile
         </li>
@@ -84,8 +84,139 @@ $topic_info = getSingleTopic($topic_id);
     </form>
   </div>
 
-  <div>
+  <div class="home">
+    <div class="container">
+      <div class="home-weapper">
 
+        <!-- home center start here -->
+
+        <div class="home-center">
+          <div class="home-center-wrapper">
+            <div class="stories">
+              <h3 class="mini-headign">
+                <?php echo $topic_info['topic_name'] ?>
+              </h3>
+            </div>
+
+
+            <div class="createPost">
+
+              <h3 class="mini-headign">Create Post</h3>
+              <div class="post-text">
+                <img src="<?php echo $_SESSION['login']['avatar'] ?>" alt="user">
+                <input type="text-area"
+                  placeholder="What's on your mind, <?php echo $_SESSION['login']['username'] ?>?">
+                <button>Post</button>
+              </div>
+
+              <div class="post-icon">
+                <a href="#" style="background: #ffebed;">
+                  <i style="background: #ff4154;" class="fa fa-picture-o"></i>
+                  Gallery
+                </a>
+              </div>
+
+            </div>
+
+            <div class="fb-post1-header">
+              <ul>
+                <li class="active">popular</li>
+                <li>recent</li>
+                <li>most view</li>
+              </ul>
+            </div>
+
+            <div class="fb-post1">
+              <div class="fb-post1-container">
+                <div class="fb-p1-main">
+                  <div class="post-title">
+                    <img src="images/user2.jpg" alt="user picture">
+                    <ul>
+                      <li>
+                        <h3>Arham Kabir <span> . 2 hours ago</span></h3>
+                      </li>
+                      <li><span>02 march at 12:55 PM</span></li>
+                    </ul>
+                    <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
+                      <a
+                        href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
+                    </p>
+                  </div>
+
+                  <div class="post-images">
+                    <div class="post-images1">
+                      <img src="images/pp.jpg" alt="post images 01">
+                      <img src="images/pp2.jpg" alt="post images 02">
+                      <img src="images/pp3.jpg" alt="post images 03">
+                    </div>
+                    <div class="post-images2">
+                      <img src="images/pp4.jpg" alt="post images 04">
+                    </div>
+                  </div>
+
+                  <div class="like-comment">
+                    <ul>
+                      <li>
+                        <img src="images/love.png" alt="love">
+                        <img src="images/like.png" alt="like">
+                        <span>22k like</span>
+                      </li>
+                      <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                      <li><i class="fa-solid fa-share-from-square"></i> <span>254 share</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fb-post1">
+              <div class="fb-post1-container">
+                <div class="fb-p1-main">
+                  <div class="post-title">
+                    <img src="images/user2.jpg" alt="user picture">
+                    <ul>
+                      <li>
+                        <h3>Arham Kabir <span> . 2 hours ago</span></h3>
+                      </li>
+                      <li><span>02 march at 12:55 PM</span></li>
+                    </ul>
+                    <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
+                      <a
+                        href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
+                    </p>
+                  </div>
+
+                  <div class="post-images">
+                    <div class="post-images1">
+                      <img src="images/pp.jpg" alt="post images 01">
+                      <img src="images/pp2.jpg" alt="post images 02">
+                      <img src="images/pp3.jpg" alt="post images 03">
+                    </div>
+                    <div class="post-images2">
+                      <img src="images/pp4.jpg" alt="post images 04">
+                    </div>
+                  </div>
+
+                  <div class="like-comment">
+                    <ul>
+                      <li>
+                        <img src="images/love.png" alt="love">
+                        <img src="images/like.png" alt="like">
+                        <span>22k like</span>
+                      </li>
+                      <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                      <li><i class="fa-solid fa-share-from-square"></i> <span>254 share</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+          </div> <!-- home center wrapper end -->
+        </div> <!-- home center end -->
+      </div>
+    </div>
   </div>
 
 
